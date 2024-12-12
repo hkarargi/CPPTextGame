@@ -18,14 +18,14 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="enemies.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="logic.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="graphics.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logic.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="enemies.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

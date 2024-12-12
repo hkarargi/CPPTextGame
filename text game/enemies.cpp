@@ -147,32 +147,20 @@ bool Enemy::positionTaken(int x, int y)
 
 // Circle Constructor
 
-Circle::Circle()
+Circle::Circle() : Enemy(2, 0, 0)
 {
-	setType(1);
-	setHealth(1.0);
 }
 
-Circle::Circle(int enemyX, int enemyY)
+Circle::Circle(int enemyX, int enemyY) : Enemy(1, enemyX, enemyY)
 {
-	setType(1);
-	setHealth(1.0);
-	setX(enemyX);
-	setY(enemyY);
 }
 
 // Asterisk Constructor
 
-Asterisk::Asterisk()
+Asterisk::Asterisk() : Enemy(2,0,0)
 {
-	setType(2);
-	setHealth(2.0);
 }
 
-Asterisk::Asterisk(int enemyX, int enemyY)
+Asterisk::Asterisk(int enemyX, int enemyY) : Enemy(2, enemyX, enemyY)
 {
-	setType(2);
-	setHealth(2.0);
-	setX(enemyX);
-	setY(enemyY);
 }

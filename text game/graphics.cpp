@@ -9,9 +9,12 @@
 using namespace std;
 
 Enemy* graphics::map[9][10] = {};
+clock_t graphics::print_time = clock();
+clock_t graphics::end_print_time = clock();
 
 void graphics::printScreen()
 {
+	print_time = clock();
 	logic::findNearestEnemy();
 	system("cls");
 
@@ -83,5 +86,15 @@ void graphics::printScreen()
 	cout << "\n ";
 	for (int i = 0; i <= 8; i++)
 		cout << setw(2) << i;
-	Enemy::enemiesClear();
+	end_print_time = clock();
+}
+
+clock_t graphics::getPrint_time()
+{
+	return print_time;
+}
+
+clock_t graphics::getEnd_print_time()
+{
+	return end_print_time;
 }

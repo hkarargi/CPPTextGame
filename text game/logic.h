@@ -2,6 +2,7 @@
 #define LOGIC_H
 
 #include <ctime>
+#include <string>
 #include "enemies.h"
 
 class logic 
@@ -29,11 +30,18 @@ public:
 
 	// Shooting
 	static void shootNearestEnemy();
+
+	// Getting Keys
+	static void getKeys();
+	static std::string getMove();
+	static void setMove(std::string moveString);
 private:
 
 	// Logic Vars
 	static int playerX;
 	static Enemy* nearestEnemy;
+	static bool moved;
+	static int doMove;
 };
 
 #endif

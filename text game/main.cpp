@@ -8,42 +8,74 @@
 
 using namespace std;
 
+clock_t begin_time = clock();
 
 void runGame()
 {
-	if (GetKeyState(VK_LEFT) & 0x8000)
+	if (logic::getMove() == "LEFT")
 	{
 		if (logic::getPlayerX() > 0)
+		{
 			logic::setPlayerX(logic::getPlayerX() - 1);
-		logic::pushEnemiesRow();
-		logic::createEnemyRow();
-		graphics::printScreen();
+			Enemy::enemiesClear();
+			logic::pushEnemiesRow();
+			logic::createEnemyRow();
+			Enemy::enemiesClear();
+			graphics::printScreen();
+		}
 	}
-	if (GetKeyState(VK_RIGHT) & 0x8000)
+	if (logic::getMove() == "RIGHT")
 	{
 		if (logic::getPlayerX() < 8)
+		{
 			logic::setPlayerX(logic::getPlayerX() + 1);
-		logic::pushEnemiesRow();
-		logic::createEnemyRow();
-		graphics::printScreen();
+			Enemy::enemiesClear();
+			logic::pushEnemiesRow();
+			logic::createEnemyRow();
+			Enemy::enemiesClear();
+			graphics::printScreen();
+		}
 	}
-	if (GetKeyState(VK_UP) & 0x8000)
+	if (logic::getMove() == "UP")
 	{
+		Enemy::enemiesClear();
 		logic::shootNearestEnemy();
 		logic::pushEnemiesRow();
 		logic::createEnemyRow();
+		Enemy::enemiesClear();
 		graphics::printScreen();
 	}
+	if (logic::getMove() == "DOWN")
+	{
+		Enemy::enemiesClear();
+		logic::pushEnemiesRow();
+		logic::createEnemyRow();
+		Enemy::enemiesClear();
+		graphics::printScreen();
+	}
+	if (logic::getMove() != "NONE")
+	{
+		Enemy::enemiesClear();
+	}
+	logic::setMove("");
 }
 
 int main()
 {
 	graphics::printScreen();
+	
 	while (true)
 	{
-		clock_t begin_time = clock();
-		runGame();
-		Sleep(logic::tickRate - double(begin_time - clock())*10);
+		logic::getKeys();
+		if (logic::tickRate <= double(clock() - begin_time) / 1000)
+		{
+			begin_time = clock();
+			runGame();
+		}
+		if (logic::tickRate * 4 <= double(clock() - graphics::getPrint_time()) / 1000)
+		{
+			graphics::printScreen();
+		}
 	}
 	return 0;
 }
