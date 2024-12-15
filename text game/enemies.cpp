@@ -3,6 +3,7 @@
 #include<vector>
 #include "enemies.h"
 #include "logic.h"
+#include "graphics.h"
 
 using namespace std;
 
@@ -12,8 +13,8 @@ Enemy::Enemy()
 {
 	this->typeID = 0;
 	this->health = 0.0;
-	this->pos.posX = 0;
-	this->pos.posY = 0;
+	this->pos.first = 0;
+	this->pos.second = 0;
 }
 
 Enemy::Enemy(int tp, int enemyX, int enemyY)
@@ -25,8 +26,8 @@ Enemy::Enemy(int tp, int enemyX, int enemyY)
 		this->health = 2.0;
 	else
 		this->health = 0;
-	this->pos.posX = enemyX;
-	this->pos.posY = enemyY;
+	this->pos.first = enemyX;
+	this->pos.second = enemyY;
 }
 
 Enemy::~Enemy()
@@ -105,22 +106,39 @@ std::pair<int, int> Enemy::getPosPair() const
 
 int Enemy::getX() const
 {
-	return pos.posX;
+	return pos.first;
 }
 
 int Enemy::getY() const
 {
-	return pos.posY;
+	return pos.second;
 }
 
 void Enemy::setX(int objectX)
 {
-	pos.posX = objectX;
+	pos.first = objectX;
 }
 
 void Enemy::setY(int objectY)
 {
-	pos.posY = objectY;
+	pos.second = objectY;
+}
+
+// Printing Related
+
+int Enemy::getBufferPos() const
+{
+	return (posY * (graphics::width + 2) + (graphics::width + 2) + posX + 2);
+}
+
+Enemy* Enemy::getEnemyByBufferPos(int bufferPos)
+{
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i]->getBufferPos() == bufferPos)
+			return enemies[i];
+	}
+	return new Enemy();
 }
 
 // Enemy Search

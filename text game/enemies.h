@@ -1,9 +1,7 @@
 ﻿#ifndef ENEMIES_H
 #define ENEMIES_H
-#define صحة health;
-#define معروفة typeID;
-#define posX first
-#define posY second
+#define posX pos.first
+#define posY pos.second
 
 #include<vector>
 
@@ -33,6 +31,10 @@ public:
 	int getY() const;
 	void setX(int enemyX);
 	void setY(int enemyY);
+
+	// Printing Related
+	int getBufferPos() const;
+	static Enemy* getEnemyByBufferPos(int bufferPos);
 
 	// Enemy Search
 	static Enemy* getEnemyByPos(int x, int y);

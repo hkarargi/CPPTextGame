@@ -5,12 +5,13 @@
 #include "enemies.h"
 #include "graphics.h"
 #include "logic.h"
+#include "old_graphics.h"
 
 using namespace std;
 
 clock_t begin_time = clock();
 
-void runGame()
+static void runGame()
 {
 	if (logic::getMove() == "LEFT")
 	{

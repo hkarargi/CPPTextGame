@@ -14,10 +14,13 @@ public:
 	static void printScreen();
 	static clock_t getPrint_time();
 	static clock_t getEnd_print_time();
+
+	// Screen Size
+	static const int width;
+	static const int height;
 private:
 	
 	// Graphics Vars
-	static Enemy* map[9][10];
 	static clock_t print_time;
 	static clock_t end_print_time;
 };

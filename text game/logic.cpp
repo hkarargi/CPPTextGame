@@ -15,7 +15,7 @@ int logic::doMove = 0;
 
 // Tickrate Init
 
-const double logic::tickRate = 1.0;
+const double logic::tickRate = 1;
 
 template<typename array, typename item>
 inline bool logic::contains(array&& a, item t)
