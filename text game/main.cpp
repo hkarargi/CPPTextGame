@@ -13,29 +13,23 @@ clock_t begin_time = clock();
 
 static void runGame()
 {
-	if (logic::getMove() == "LEFT")
+	if (logic::getMove() == "LEFT" && logic::getPlayerX() > 0)
 	{
-		if (logic::getPlayerX() > 0)
-		{
-			logic::setPlayerX(logic::getPlayerX() - 1);
-			Enemy::enemiesClear();
-			logic::pushEnemiesRow();
-			logic::createEnemyRow();
-			Enemy::enemiesClear();
-			graphics::printScreen();
-		}
+		logic::setPlayerX(logic::getPlayerX() - 1);
+		Enemy::enemiesClear();
+		logic::pushEnemiesRow();
+		logic::createEnemyRow();
+		Enemy::enemiesClear();
+		graphics::printScreen();
 	}
-	if (logic::getMove() == "RIGHT")
+	if (logic::getMove() == "RIGHT" && logic::getPlayerX() < 8)
 	{
-		if (logic::getPlayerX() < 8)
-		{
-			logic::setPlayerX(logic::getPlayerX() + 1);
-			Enemy::enemiesClear();
-			logic::pushEnemiesRow();
-			logic::createEnemyRow();
-			Enemy::enemiesClear();
-			graphics::printScreen();
-		}
+		logic::setPlayerX(logic::getPlayerX() + 1);
+		Enemy::enemiesClear();
+		logic::pushEnemiesRow();
+		logic::createEnemyRow();
+		Enemy::enemiesClear();
+		graphics::printScreen();
 	}
 	if (logic::getMove() == "UP")
 	{
@@ -63,17 +57,23 @@ static void runGame()
 
 int main()
 {
+	cout << "Game Settings: \n";
+
+	cout << "*Default tickrate is 1*\nWhat tickrate do you want? (in seconds): ";
+	
+	logic::setTickrate();
+
 	graphics::printScreen();
 	
 	while (true)
 	{
 		logic::getKeys();
-		if (logic::tickRate <= double(clock() - begin_time) / 1000)
+		if (logic::getTickrate() <= double(clock() - begin_time) / 1000)
 		{
 			begin_time = clock();
 			runGame();
 		}
-		if (logic::tickRate * 4 <= double(clock() - graphics::getPrint_time()) / 1000)
+		if (logic::getTickrate() * 4 <= double(clock() - graphics::getPrint_time()) / 1000)
 		{
 			graphics::printScreen();
 		}

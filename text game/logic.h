@@ -8,9 +8,6 @@
 class logic 
 {
 public:
-
-	// Tickrate
-	static const double tickRate;
 	
 	// Basic Logic
 	template<typename array, typename item>
@@ -35,6 +32,11 @@ public:
 	static void getKeys();
 	static std::string getMove();
 	static void setMove(std::string moveString);
+
+	// Tickrate Related
+	static double getTickrate();
+	static void setTickrate();
+	static void setTickrate(int rate);
 private:
 
 	// Logic Vars
@@ -42,6 +44,9 @@ private:
 	static Enemy* nearestEnemy;
 	static bool moved;
 	static int doMove;
+
+	// Tickrate
+	static double tickRate;
 };
 
 #endif

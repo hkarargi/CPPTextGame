@@ -68,7 +68,6 @@ void Enemy::enemiesClear()
 			Enemy::enemies.erase(std::find(Enemy::enemies.begin(), Enemy::enemies.end(), Enemy::enemies[i]));
 		}
 	}
-
 	logic::findNearestEnemy();
 }
 
