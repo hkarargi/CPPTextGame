@@ -74,7 +74,15 @@ void logic::runGame()
 		graphics::printScreen();
 		turn += 1;
 	}
-	else if (logic::getMove() == "Z" && charge >= 2 && charge)
+	else if (logic::getMove() == "Z" && charge >= 2 && charge < 8)
+	{
+		logic::shootNearestEnemy(logic::getCharge() - (charge % 2));
+		logic::setCharge(logic::getCharge() % 2);
+		Enemy::enemiesClear();
+		graphics::printScreen();
+		turn += 1;
+	}
+	else if (logic::getMove() == "Z" && charge >= 8)
 	{
 		logic::shootNearestEnemy(logic::getCharge() - (charge % 2));
 		logic::setCharge(logic::getCharge() % 2);
@@ -165,10 +173,8 @@ void logic::findNearestEnemy()
 	Enemy* enemyShot = new Enemy();
 	enemyShot->setY(-1);
 	for (int i = 0; i < Enemy::enemies.size(); i++)
-	{
 		if (Enemy::enemies[i]->getType() != 0 && playerX == Enemy::enemies[i]->getX() && 7 - Enemy::enemies[i]->getY() < 7 - enemyShot->getY())
 			enemyShot = Enemy::enemies[i];
-	}
 	logic::nearestEnemy = enemyShot;
 }
 
@@ -177,6 +183,8 @@ Enemy* logic::getNearestEnemy()
 	logic::findNearestEnemy();
 	return logic::nearestEnemy;
 }
+
+// Shooting
 
 void logic::shootNearestEnemy()
 {
@@ -192,6 +200,17 @@ void logic::shootNearestEnemy(int damage)
 	if (getNearestEnemy()->getHealth() - damage <= 0)
 		getNearestEnemy()->setIfShotToDeath(true);
 	getNearestEnemy()->setHealth(getNearestEnemy()->getHealth() - damage);
+}
+
+void logic::shootEnemyRow(int damage)
+{
+	logic::findNearestEnemy();
+	for (int i = 0; i < Enemy::enemies.size(); i++)
+	{
+		if (Enemy::enemies[i]->getHealth() - damage <= 0)
+			Enemy::enemies[i]->setIfShotToDeath(true);
+		Enemy::enemies[i]->setHealth(Enemy::enemies[i]->getHealth() - damage);
+	}
 }
 
 // Getting Keys

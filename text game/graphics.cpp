@@ -62,7 +62,7 @@ void graphics::printScreen()
 
 	buffer += "\033[0m\n\nScore: " + to_string(logic::getScore());
 
-	buffer += "\n\nCharge: [ ";
+	buffer += "\n\nCharge: [\033[38;5;3m ";
 	for (int i = 0; i < logic::getCharge(); i++)
 	{
 		buffer += "-";
@@ -75,7 +75,7 @@ void graphics::printScreen()
 		if ((i + logic::getCharge()) % 2 == 1 && i < (7 - logic::getCharge()))
 			buffer += "|";
 	}
-	buffer += " ]";
+	buffer += " \033[0m]";
 	buffer += '\0';
 
 	system("cls");

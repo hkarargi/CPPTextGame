@@ -34,6 +34,7 @@ public:
 	// Shooting
 	static void shootNearestEnemy();
 	static void shootNearestEnemy(int damage);
+	static void shootEnemyRow(int damage);
 
 	// Getting Keys
 	static void getKeys();
