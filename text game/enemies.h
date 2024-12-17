@@ -5,6 +5,8 @@
 
 #include<vector>
 
+using namespace std;
+
 class Enemy 
 {
 public:
@@ -39,10 +41,14 @@ public:
 	// Enemy Search
 	static Enemy* getEnemyByPos(int x, int y);
 	static bool positionTaken(int x, int y);
-
+	
+	// Shooting Death
+	bool getIfShotToDeath();
+	void setIfShotToDeath(bool shot);
 private:
 
 	// Enemy Vars
+	bool diedByShooting;
 	int typeID;
 	double health;
 	std::pair<int, int> pos;
@@ -60,6 +66,20 @@ class Asterisk : public Enemy
 public:
 	Asterisk();
 	Asterisk(int enemyX, int enemyY);
+};
+
+class Cross : public Enemy
+{
+public:
+	Cross();
+	Cross(int enemyX, int enemyY);
+};
+
+class Tilde : public Enemy
+{
+public:
+	Tilde();
+	Tilde(int enemyX, int enemyY);
 };
 
 #endif
